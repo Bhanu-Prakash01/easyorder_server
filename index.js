@@ -15,7 +15,7 @@ server.use(express.json())
 server.use(helmet());
 
 
-mongoose.connect(process.env.MONGODB_URI_TOURNAMENTS)
+mongoose.connect("mongodb://localhost:27017")
     .then(()=>{
         console.log("database is connected")
     })
