@@ -15,7 +15,7 @@ server.use(express.json())
 server.use(helmet());
 
 
-mongoose.connect("mongodb://localhost:27017")
+mongoose.connect("mongodb+srv://myfirstbackend:D0TrlgRH2yIfYcF6@cluster0.iuv7w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     .then(()=>{
         console.log("database is connected")
     })
