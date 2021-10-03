@@ -8,6 +8,9 @@ const PlayersSchema=new mongoose.Schema({
         type:Number,
         default:0
     },
+    number:{
+        type: Number
+    },
     password:{
         type:String
     },

@@ -5,14 +5,15 @@ const bcrypt=require('bcrypt')
 const Tournaments=require('../../models/tournaments/tournaments');
 
 router.post('/post', async (req,res)=>{
-    const {name,password}=req.body
-    
+    const {name,password,number}=req.body
+    console.log(name)
     try{
         const searching_user= await Player.findOne({name:name})
         if(!searching_user){
             const data= await Player({
                 name:name,
-                password: await bcrypt.hash(password, 10)
+                password: await bcrypt.hash(password, 10),
+                number:number
             })
         
             await data.save()
@@ -52,10 +53,21 @@ router.post('/login', async (req,res)=>{
 
 })
 
-router.put('/update', async (req,res)=>{
+router.put('/money/update', async (req,res)=>{
     const {name,money,matchplayed,totalkills}=req.body
     const updating_the_user= await Player.findOneAndUpdate({name:name},{
         money:money,
+        matchPlayed: matchplayed,
+        totalkills:totalkills
+    })
+
+    res.send('done')
+
+})
+
+router.put('/update', async (req,res)=>{
+    const {name,matchplayed,totalkills}=req.body
+    const match_update= await Player.findOneAndUpdate({name:name},{
         matchPlayed: matchplayed,
         totalkills:totalkills
     })

@@ -1,14 +1,12 @@
 const mongoose=require('mongoose');
 
-// const players_registered= new mongoose.Schema({
-//     playername:{
-//         type:String
-//     }
-// })
 
 const TournamentsSchema=new mongoose.Schema({
     id:{
         type:Number
+    },
+    time:{
+        type: String
     },
     game:{
         type:Number
@@ -32,6 +30,10 @@ const TournamentsSchema=new mongoose.Schema({
     date:{
         type:Date,
         default:Date.now()
+    },
+    over:{
+        type: Boolean,
+        default: false
     }
 })
 

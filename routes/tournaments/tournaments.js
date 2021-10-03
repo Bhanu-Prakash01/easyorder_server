@@ -3,19 +3,27 @@ const router=express.Router();
 const Tournaments=require('../../models/tournaments/tournaments');
 
 router.post('/post', async (req,res)=>{
-    const {map,id,per_kill,entry_fee,mode,game}= req.body
+    const {map,id,per_kill,entry_fee,mode,game,time}= req.body
     const data= new Tournaments({
         id:id,
         entry_fee:entry_fee,
         per_kill: per_kill,
         map:map,
         mode: mode,
-        game:game
+        game:game,
+        time:time
     })
 
     await data.save()
     res.send("data has been saved")
 
+})
+
+router.post('/over/:id',async (req,res)=>{
+    const game_id= req.params.id
+    const updateing_dat= await Tournaments.findOneAndUpdate({_id:id},{
+        over:true
+    })
 })
 
 router.get('/get', async (req,res)=>{

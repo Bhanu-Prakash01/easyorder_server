@@ -3,6 +3,7 @@ const server=express();
 const mongoose=require('mongoose')
 const helmet=require('helmet')
 require('dotenv').config();
+const cors=require('cors')
 
 //importing files
 //tournaments
@@ -13,7 +14,7 @@ const players=require('./routes/tournaments/players')
 //middlewares
 server.use(express.json())
 server.use(helmet());
-
+server.use(cors())
 
 mongoose.connect(process.env.MONGODB_URI_TOURNAMENTS)
     .then(()=>{
