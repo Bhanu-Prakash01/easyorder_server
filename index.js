@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URI_TOURNAMENTS)
     })
 
 server.get('/',(req,res)=>{
-    res.send("server is running")
+    res.send("server is running 1")
 })
 
 

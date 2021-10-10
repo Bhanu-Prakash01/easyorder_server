@@ -53,12 +53,12 @@ router.post('/login', async (req,res)=>{
 
 })
 
-router.put('/money/update', async (req,res)=>{
+router.post('/money/update', async (req,res)=>{
     const {name,money,matchplayed,totalkills}=req.body
     const updating_the_user= await Player.findOneAndUpdate({name:name},{
         money:money,
-        matchPlayed: matchplayed,
-        totalkills:totalkills
+        matchPlayed: 0,
+        totalkills:0
     })
 
     res.send('done')
