@@ -14,7 +14,7 @@ const players=require('./routes/tournaments/players')
 //middlewares
 server.use(express.json())
 server.use(helmet());
-// server.use(cors())
+server.use(cors())
 
 mongoose.connect(process.env.MONGODB_URI_TOURNAMENTS)
     .then(()=>{
@@ -36,6 +36,7 @@ server.get('/',(req,res)=>{
 
 server.use('/tournament',all_tournaments)
 server.use('/players',players)
+
 
 server.listen(process.env.PORT || 8000,()=>{
     console.log('server is running')

@@ -4,6 +4,9 @@ const PlayersSchema=new mongoose.Schema({
     name:{
         type:String
     },
+    id:{
+        type:Number
+    },
     money:{
         type:Number,
         default:0

@@ -5,12 +5,14 @@ const bcrypt=require('bcrypt')
 const Tournaments=require('../../models/tournaments/tournaments');
 
 router.post('/post', async (req,res)=>{
+    console.log(req.body)
     const {name,password,number}=req.body
     console.log(name)
     try{
         const searching_user= await Player.findOne({name:name})
         if(!searching_user){
             const data= await Player({
+                id: await Player.find().count()+1,
                 name:name,
                 password: await bcrypt.hash(password, 10),
                 number:number
@@ -34,20 +36,27 @@ router.get('/get', async (req,res)=>{
    res.send(saved_users)
 })
 
+router.get('/get/:id', async (req,res)=>{
+    const player_details= await Player.find({id:req.params.id})
+    res.send(player_details)
+ })
+
 router.post('/login', async (req,res)=>{
+    console.log(req.body)
     const {name,password}=req.body
     try{
         const searching_user_password= await Player.findOne({name:name})
         const d= await bcrypt.compare(password,searching_user_password.password)
         if(d){
-            res.send(searching_user_password)
+            const {id}=searching_user_password
+            res.send(`${id}`)
         }
         else{
             res.status(400).send('username or password is worng')
         }
     }
     catch(e){
-        res.status(404).send('username is does not exist')
+        res.status(401).send('username is does not exist')
     }
     
 
