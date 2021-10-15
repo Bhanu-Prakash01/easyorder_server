@@ -37,7 +37,7 @@ router.get('/get', async (req,res)=>{
 })
 
 router.get('/get/:id', async (req,res)=>{
-    const player_details= await Player.find({id:req.params.id})
+    const player_details= await Player.findOne({id:req.params.id})
     res.send(player_details)
  })
 
@@ -63,14 +63,14 @@ router.post('/login', async (req,res)=>{
 })
 
 router.post('/money/update', async (req,res)=>{
-    const {name,money,matchplayed,totalkills}=req.body
-    const updating_the_user= await Player.findOneAndUpdate({name:name},{
+    const {id,money}=req.body
+    const updating_the_user= await Player.findOneAndUpdate({game:id},{
         money:money,
         matchPlayed: 0,
         totalkills:0
     })
 
-    res.send('done')
+    res.status(200).send('ok')
 
 })
 

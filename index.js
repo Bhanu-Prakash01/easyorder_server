@@ -16,7 +16,7 @@ server.use(express.json())
 server.use(helmet());
 server.use(cors())
 
-mongoose.connect(process.env.MONGODB_URI_TOURNAMENTS)
+mongoose.connect('mongodb+srv://myfirstbackend:D0TrlgRH2yIfYcF6@cluster0.iuv7w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
     .then(()=>{
         console.log("database is connected")
     })
@@ -28,6 +28,8 @@ server.get('/',(req,res)=>{
     res.send("server is running 1")
 })
 
+server.use(express.static('public'));  
+server.use('/images', express.static('images'))
 
 
 //main routes
