@@ -41,5 +41,5 @@ server.use('/players',players)
 
 const p=process.env.PORT || 8000
 server.listen(p,()=>{
-    console.log('server is running')
+    console.log(`ser ${p}`)
 })
